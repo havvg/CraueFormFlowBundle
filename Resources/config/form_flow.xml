@@ -12,9 +12,16 @@
 	<parameters>
 		<parameter key="craue.form.flow.class">Craue\FormFlowBundle\Form\FormFlow</parameter>
 		<parameter key="craue.form.flow.storage.class">Craue\FormFlowBundle\Storage\SessionStorage</parameter>
+		<parameter key="craue.form.flow.registry.class">Craue\FormFlowBundle\Form\Registry</parameter>
 	</parameters>
 
 	<services>
+		<service id="craue.form.flow.registry_default" class="%craue.form.flow.registry.class%" scope="request" public="false">
+			<argument type="service" id="session" />
+		</service>
+
+		<service id="craue.form.flow.registry" alias="craue.form.flow.registry_default" scope="request" />
+
 		<service id="craue.form.flow.storage_default" class="%craue.form.flow.storage.class%" scope="request" public="false">
 			<argument type="service" id="session" />
 		</service>
